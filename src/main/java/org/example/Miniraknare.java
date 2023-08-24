@@ -23,7 +23,9 @@ public class Miniraknare {
         return base*base;
     }
 
-    public static String radix(int number, int selection) {
-        return null;
+    public static String radix10(int number, int radix) {
+
+        Resources resources = new Resources();
+        return resources.presentValue(number, radix);
     }
 }

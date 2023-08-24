@@ -5,6 +5,17 @@ import java.util.List;
 
 public class Resources {
 
+    public String presentValue(int number, int selection) {
+
+        return switch (selection) {
+            case 1 -> radix10.get(number);
+            case 2 -> radix4.get(number);
+            case 3 -> radixBinary.get(number);
+            case 4 -> radixRome.get(number);
+            default -> null;
+        };
+    }
+
         List<String> radix10 = new ArrayList<>(List.of(
                 "0",
                 "1",

@@ -84,9 +84,9 @@ class MiniraknareTest {
     public void radixBinary() {
         //Given
         int number = 4;
-        int selection = 3;
+        int radix = 3;
         //When
-        String result = Miniraknare.radix(number, selection);
+        String result = Miniraknare.radix10(number, radix);
         //Then
         assertEquals(result, "100");
     }
@@ -95,9 +95,9 @@ class MiniraknareTest {
     public void radixRome() {
         //Given
         int number = 10;
-        int selection = 4;
+        int radix = 4;
         //When
-        String result = Miniraknare.radix(number, selection);
+        String result = Miniraknare.radix10(number, radix);
         //Then
         assertEquals(result, "X");
     }
