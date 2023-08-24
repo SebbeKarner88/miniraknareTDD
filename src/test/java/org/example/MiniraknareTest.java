@@ -77,7 +77,7 @@ class MiniraknareTest {
         //When
         int result = Miniraknare.squared(base);
         //Then
-        assertEquals(result, -16);
+        assertEquals(result, 16);
     }
 
     @Test
