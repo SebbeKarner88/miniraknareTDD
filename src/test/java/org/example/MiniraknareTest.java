@@ -59,4 +59,46 @@ class MiniraknareTest {
         //Then
         assertEquals(result, 16);
     }
+
+    @Test
+    public void squaredZero() {
+        //Given
+        int base = 0;
+        //When
+        int result = Miniraknare.squared(base);
+        //Then
+        assertEquals(result, 0);
+    }
+
+    @Test
+    public void squaredNegative() {
+        //Given
+        int base = -4;
+        //When
+        int result = Miniraknare.squared(base);
+        //Then
+        assertEquals(result, -16);
+    }
+
+    @Test
+    public void radixBinary() {
+        //Given
+        int number = 4;
+        int selection = 3;
+        //When
+        String result = Miniraknare.radix(number, selection);
+        //Then
+        assertEquals(result, "100");
+    }
+
+    @Test
+    public void radixRome() {
+        //Given
+        int number = 10;
+        int selection = 4;
+        //When
+        String result = Miniraknare.radix(number, selection);
+        //Then
+        assertEquals(result, "X");
+    }
 }
