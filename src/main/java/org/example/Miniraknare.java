@@ -3,12 +3,22 @@ package org.example;
 public class Miniraknare {
 
 
-    public static int addition(int term1, int term2) {
-        return term1+term2;
+    public static long addition(long term1, long term2) {
+        long sum = term1+term2;
+        long max = 2147483647;
+        long min = -2147483647;
+        if(sum > max || sum < min)
+            throw new ArithmeticException("Value out of bounds!");
+        return sum;
     }
 
-    public static int subtraction(int term1, int term2) {
-        return term1-term2;
+    public static long subtraction(long term1, long term2) {
+        long sum = term1-term2;
+        long max = 2147483647;
+        long min = -2147483647;
+        if(sum > max || sum < min)
+            throw new ArithmeticException("Value too low!");
+        return sum;
     }
 
     public static int multiplication(int factor1, int factor2) {
@@ -16,6 +26,8 @@ public class Miniraknare {
     }
 
     public static int division(int numerator, int denominator) {
+        if(denominator == 0)
+            throw new ArithmeticException("Can not divide by zero.");
         return numerator/denominator;
     }
 

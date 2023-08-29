@@ -1,32 +1,50 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MiniraknareTest {
 
-    @Test
-    public void addition() {
-        //Given
-        int term1 = 2;
-        int term2 = 4;
-        //When
-        int result = Miniraknare.addition(term1, term2);
+    @ParameterizedTest
+    @CsvSource(value = {"2, 4, 6", "1, 2, 3", "-1, 2, 1", "-2, -2, -4"})
+    public void addition(int term1, int term2, int expected) {
+        //Given When
+        long result = Miniraknare.addition(term1, term2);
         //Then
-        assertEquals(result, 6);
+        assertEquals(result, expected);
     }
 
-    @Test
-    public void subtraction() {
-        //Given
-        int term1 = 4;
-        int term2 = 2;
-        //When
-        int result = Miniraknare.subtraction(term1, term2);
-        //Then
-        assertEquals(result, 2);
+    @ParameterizedTest
+    @CsvSource(value = {"5, 2147483646", "-2147483646, -10", "2147483455, 9564"})
+    public void additionExceptionTest(long term1, long term2) {
+        // Then
+        assertThrows(ArithmeticException.class, () -> {
+            Miniraknare.addition(term1, term2);
+        });
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"2, 4, -2", "6, 2, 4", "234, 35, 199", "-10, -20, 10"})
+    public void subtraction(long term1, long term2, long expected) {
+        //Given When
+        long result = Miniraknare.subtraction(term1, term2);
+        //Then
+        assertEquals(result, expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"5, 2147483999", "-2147483646, 600", "2147483455, -9564"})
+    public void subtractionExceptionTest(long term1, long term2) {
+        // Then
+        assertThrows(ArithmeticException.class, () -> {
+            Miniraknare.subtraction(term1, term2);
+        });
+    }
+
 
     @Test
     public void multiplication() {
@@ -39,15 +57,20 @@ class MiniraknareTest {
         assertEquals(result, 8);
     }
 
-    @Test
-    public void division() {
-        //Given
-        int numerator = 4;
-        int denominator = 2;
-        //When
+    @ParameterizedTest
+    @CsvSource(value = {"4, 2 ,2", "8, 4, 2", "-4, 2, -2"})
+    public void division(int numerator, int denominator, int expected) {
+        //Given When
         int result = Miniraknare.division(numerator, denominator);
         //Then
-        assertEquals(result, 2);
+        assertEquals(result, expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"4, 0", "-10, 0"})
+    public void division(int numerator, int denominator) {
+        //Then
+        assertThrows(ArithmeticException.class, () -> Miniraknare.division(numerator, denominator));
     }
 
     @Test
