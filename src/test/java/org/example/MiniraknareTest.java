@@ -2,6 +2,7 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -45,7 +46,6 @@ class MiniraknareTest {
         });
     }
 
-
     @Test
     public void multiplication() {
         //Given
@@ -58,7 +58,7 @@ class MiniraknareTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"4, 2 ,2", "8, 4, 2", "-4, 2, -2"})
+    @CsvFileSource(resources = "/divisionNumbers.csv")
     public void division(int numerator, int denominator, int expected) {
         //Given When
         long result = Miniraknare.division(numerator, denominator);
@@ -73,43 +73,29 @@ class MiniraknareTest {
         assertThrows(ArithmeticException.class, () -> Miniraknare.division(numerator, denominator));
     }
 
-    @Test
-    public void squaredPositive() {
-        //Given
-        int base = 4;
-        //When
+    @ParameterizedTest
+    @CsvFileSource(resources = "/squaredNumbers.csv")
+    public void squared(int base, long expected) {
+        //Given When
         int result = Miniraknare.squared(base);
         //Then
-        assertEquals(result, 16);
-    }
-
-    @Test
-    public void squaredZero() {
-        //Given
-        int base = 0;
-        //When
-        int result = Miniraknare.squared(base);
-        //Then
-        assertEquals(result, 0);
-    }
-
-    @Test
-    public void squaredNegative() {
-        //Given
-        int base = -4;
-        //When
-        int result = Miniraknare.squared(base);
-        //Then
-        assertEquals(result, 16);
+        assertEquals(result, expected);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"2, 1", "9, 3", "16, 4"})
+    @CsvSource(value = {"324, 18", "9, 3", "16, 4"})
     public void root(long term1, long expected) {
         //Given When
-        long result = Miniraknare.root(term1);
+        double result = Miniraknare.root(term1);
         //Then
         assertEquals(result, expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-5, -9, -3})
+    public void rootException(long term1) {
+        //Then
+        assertThrows(ArithmeticException.class, () -> Miniraknare.root(term1));
     }
 
     @Test

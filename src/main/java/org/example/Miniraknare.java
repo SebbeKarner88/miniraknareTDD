@@ -35,6 +35,12 @@ public class Miniraknare {
         return base*base;
     }
 
+    public static double root(long term) {
+        if (term <= 0)
+            throw new ArithmeticException("Not  allowed");
+        return Math.sqrt(term);
+    }
+
     public static String radix10(int number, int radix) {
 
         Resources resources = new Resources();
