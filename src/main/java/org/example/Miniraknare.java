@@ -25,7 +25,7 @@ public class Miniraknare {
         return factor1*factor2;
     }
 
-    public static int division(int numerator, int denominator) {
+    public static long division(int numerator, int denominator) {
         if(denominator == 0)
             throw new ArithmeticException("Can not divide by zero.");
         return numerator/denominator;

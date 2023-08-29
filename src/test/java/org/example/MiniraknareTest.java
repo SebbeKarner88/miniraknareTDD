@@ -61,7 +61,7 @@ class MiniraknareTest {
     @CsvSource(value = {"4, 2 ,2", "8, 4, 2", "-4, 2, -2"})
     public void division(int numerator, int denominator, int expected) {
         //Given When
-        int result = Miniraknare.division(numerator, denominator);
+        long result = Miniraknare.division(numerator, denominator);
         //Then
         assertEquals(result, expected);
     }
@@ -101,6 +101,15 @@ class MiniraknareTest {
         int result = Miniraknare.squared(base);
         //Then
         assertEquals(result, 16);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"2, 1", "9, 3", "16, 4"})
+    public void root(long term1, long expected) {
+        //Given When
+        long result = Miniraknare.root(term1);
+        //Then
+        assertEquals(result, expected);
     }
 
     @Test
