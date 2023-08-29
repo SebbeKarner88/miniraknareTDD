@@ -98,25 +98,21 @@ class MiniraknareTest {
         assertThrows(ArithmeticException.class, () -> Miniraknare.root(term1));
     }
 
-    @Test
-    public void radixBinary() {
-        //Given
-        int number = 4;
-        int radix = 3;
-        //When
-        String result = Miniraknare.radix10(number, radix);
+    @ParameterizedTest
+    @CsvSource(value = {"4, 3, 100", "10, 4, X", "14, 3, 1110"})
+    public void radix(int number, int radix, String expected) {
+        //Given When
+        String result = Miniraknare.radix10(number,radix);
         //Then
-        assertEquals(result, "100");
+        assertEquals(result, expected);
     }
 
     @Test
-    public void radixRome() {
-        //Given
-        int number = 10;
+    public void radixException() {
+        // Given
+        int number = 0;
         int radix = 4;
-        //When
-        String result = Miniraknare.radix10(number, radix);
-        //Then
-        assertEquals(result, "X");
+        // Then
+        assertThrows(NullPointerException.class, () -> Miniraknare.radix10(number, radix));
     }
 }

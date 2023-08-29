@@ -7,6 +7,9 @@ public class Resources {
 
     public String presentValue(int number, int selection) {
 
+        if (selection == 4 && number == 0)
+            throw new NullPointerException("No value for Roman zero");
+
         return switch (selection) {
             case 1 -> radix10.get(number);
             case 2 -> radix4.get(number);

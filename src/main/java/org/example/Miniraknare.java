@@ -41,7 +41,7 @@ public class Miniraknare {
         return Math.sqrt(term);
     }
 
-    public static String radix10(int number, int radix) {
+    public static String radix10(int number, int radix){
 
         Resources resources = new Resources();
         return resources.presentValue(number, radix);
